@@ -21,3 +21,30 @@ def dynamic_size():
         r += 1
 
     return max_
+
+
+def fixed_size(s, windowSize):
+
+    # Window init
+    r = 0
+    l = 0
+
+    window = []
+    res = []
+    for i in range(windowSize-1):
+        window.append(s[i])
+        r = i
+    r += 1
+
+    # Window process
+    while r <= len(s) - 1:
+        window.append(s[r])
+
+        # check the window
+        res.append(window.copy())
+        window.pop(0)
+
+        r += 1
+        l += 1
+
+    return res
