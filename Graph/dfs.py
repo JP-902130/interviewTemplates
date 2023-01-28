@@ -8,18 +8,16 @@ def isInBound(r, c):
 
 def dfs(r, c):
 
-    if (r, c) in visited:
-        return
-
     visited.add((r, c))
 
     for dir in directions:
         new_x = r + dir[0]
         new_y = c + dir[1]
-        if ('''the condition to test if the next neighbor is visitable'''):
+        if (isInBound() and (new_x, new_y) not in visited and '''the condition to test if the next neighbor is visitable'''):
             dfs(new_x, new_y)
 
 
 for r in range(len(grid)):
     for c in range(len(grid[0])):
-        dfs(r, c)
+        if (r, c) not in visited:
+            dfs(r, c)
