@@ -20,6 +20,7 @@ def condition():
 for r in range(len(rooms)):
     for c in range(len(rooms[0])):
         if rooms[r][c] == 0:
+            # Note: The BFS algorithm requires you to put the nodes in the queue and visited at the first place
             queue.append((r, c))
             visited.add((r, c))
 
