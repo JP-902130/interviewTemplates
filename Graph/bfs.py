@@ -35,3 +35,8 @@ while queue:
                 queue.append((nextR, nextC))
                 visited.add((nextR, nextC))
     level += 1
+
+'''
+- This take notice that we have to put the cells into the queue and visited set at the very beginning to avoid some problems
+- Very commonly used algo for shortest path
+'''
