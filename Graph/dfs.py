@@ -22,5 +22,5 @@ def dfs(r, c):
 
 for r in range(len(grid)):
     for c in range(len(grid[0])):
-
-        dfs(r, c)
+        if ('''condition'''):
+            dfs(r, c)

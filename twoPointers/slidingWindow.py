@@ -1,3 +1,8 @@
+'''
+Pattern:
+- Each time we add a new element to the window, we need to make sure that the weight of the window should increase, each time we shrink the window, the weight should decrease.
+'''
+
 
 def dynamic_size():
     arr = []
