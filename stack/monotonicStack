@@ -10,8 +10,8 @@ def nextGreater(temperatures):
     nextGreater = [0] * len(temperatures)
     stack = []
     for i in range(len(temperatures)):
-        # Note this operator                   |
-        while stack and temperatures[stack[-1]] < temperatures[i]:
+        # Note this operator
+        while stack and temperatures[i] > temperatures[stack[-1]]:
             top = stack.pop()
             nextGreater[top] = i
         stack.append(i)
@@ -24,8 +24,9 @@ def nextGreaterOrEqual(temperatures):
     nextGreaterOrEqual = [0] * len(temperatures)
     stack = []
     for i in range(len(temperatures)):
-        # Note this operator                   |
-        while stack and temperatures[stack[-1]] <= temperatures[i]:
+        # Note this operator
+        #
+        while stack and temperatures[i] >= temperatures[stack[-1]]:
             top = stack.pop()
             nextGreaterOrEqual[top] = i
         stack.append(i)
@@ -38,8 +39,10 @@ def nextSmaller(temperatures):
     nextSmaller = [0] * len(temperatures)
     stack = []
     for i in range(len(temperatures)):
-        # Note this operator                   |
-        while stack and temperatures[stack[-1]] > temperatures[i]:
+        # Note this operator
+        #      |
+
+        while temperatures[i] < stack and temperatures[stack[-1]]:
             top = stack.pop()
             nextSmaller[top] = i
         stack.append(i)
@@ -53,7 +56,8 @@ def nextSmallerOrEqual(temperatures):
     stack = []
     for i in range(len(temperatures)):
         # Note this operator                   |
-        while stack and temperatures[stack[-1]] >= temperatures[i]:
+
+        while stack and temperatures[i] <= temperatures[stack[-1]]:
             top = stack.pop()
             nextSmallerOrEqual[top] = i
         stack.append(i)
