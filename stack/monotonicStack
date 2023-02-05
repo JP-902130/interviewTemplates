@@ -1,0 +1,61 @@
+'''
+- If we need to find prev, we just need to iterate this array from the back
+- The only thing we need to change is the operator. Remember, if we need next greater, then the temperature should be greater than the stack. If we need next greater than or equal, we need to add equality
+
+'''
+
+
+def nextGreater(temperatures):
+
+    nextGreater = [0] * len(temperatures)
+    stack = []
+    for i in range(len(temperatures)):
+        # Note this operator                   |
+        while stack and temperatures[stack[-1]] < temperatures[i]:
+            top = stack.pop()
+            nextGreater[top] = i
+        stack.append(i)
+
+    return nextGreater
+
+
+def nextGreaterOrEqual(temperatures):
+
+    nextGreaterOrEqual = [0] * len(temperatures)
+    stack = []
+    for i in range(len(temperatures)):
+        # Note this operator                   |
+        while stack and temperatures[stack[-1]] <= temperatures[i]:
+            top = stack.pop()
+            nextGreaterOrEqual[top] = i
+        stack.append(i)
+
+    return nextGreaterOrEqual
+
+
+def nextSmaller(temperatures):
+
+    nextSmaller = [0] * len(temperatures)
+    stack = []
+    for i in range(len(temperatures)):
+        # Note this operator                   |
+        while stack and temperatures[stack[-1]] > temperatures[i]:
+            top = stack.pop()
+            nextSmaller[top] = i
+        stack.append(i)
+
+    return nextSmaller
+
+
+def nextSmallerOrEqual(temperatures):
+
+    nextSmallerOrEqual = [0] * len(temperatures)
+    stack = []
+    for i in range(len(temperatures)):
+        # Note this operator                   |
+        while stack and temperatures[stack[-1]] >= temperatures[i]:
+            top = stack.pop()
+            nextSmallerOrEqual[top] = i
+        stack.append(i)
+
+    return nextSmallerOrEqual
