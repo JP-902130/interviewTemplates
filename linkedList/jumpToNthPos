@@ -1,0 +1,12 @@
+def getToNthNode(head, i):
+    cur = head
+    prev = None
+    after = head.next
+    curPos = 1
+
+    while curPos != i:
+        prev = cur
+        cur = cur.next
+        after = cur.next
+        curPos += 1
+    return [prev, cur, after]
