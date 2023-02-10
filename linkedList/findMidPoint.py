@@ -1,29 +1,20 @@
-class Node:
-    def __init__(self, val, next):
-        self.val = val
-        self.next = next
+def findMiddle(head):
 
+    # The pointer used to disconnect the left half from the mid node.
+    prev = None
+    slow = head
+    fast = head
 
-# This version returns 2 for the list 1 2 3 4
-head = Node()
-slow = head
-fast = head.next
-while fast and fast.next:
-    fast = fast.next.next
-    slow = slow.next
+    # Iterate until fastPr doesn't reach the end of the linked list.
+    while fast and fast.next:
+        prev = slow
+        slow = slow.next
+        fast = fast.next.next
 
-endOfFirstHalf = slow
+    # Handling the case when slowPtr was equal to head.
+    if prev:
+        prev.next = None
 
-# This version returns 3 for the list 1 2 3 4
-head = Node()
-slow = head
-fast = head
-while fast and fast.next:
-    fast = fast.next.next
-    slow = slow.next
+    return slow
 
-endOfFirstHalf = slow
-
-'''
-1) Both versions work, but sometimes one works better then the other. 
-'''
+# Function returns 3 for input [1,2,3,4]. The function also separates 1,2 from 3,4. This action makes a lot of questions much simpler
