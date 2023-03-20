@@ -1,4 +1,4 @@
-#Problem1: dfs(i), strictly from i or not strictly?
+# Problem1: dfs(i), strictly from i or not strictly?
 
 - Referring to "300. Longest Increasing Subsequence"
 
