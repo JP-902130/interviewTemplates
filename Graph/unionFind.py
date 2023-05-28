@@ -1,32 +1,29 @@
-parent = []
-'''
-The parentent array is working the same way as the one in "Finding the duplicate number"
-For any index i in parent, parent[i] refers to the node that i points to.
-Originally, every node points at itself.
-If a node points at itself, then the node is called the root node, also called the representitive of the graph component
-'''
-rank = []
-for i in range(n):
-    parent.append(i)
-    rank.append(1)
+class Union:
+    def __init__(self, n):
+        self.parent = []
+        for i in range(n):
+            self.parent.append(i)
+        self.weight = [1] * len(self.parent)
 
+    def find(self, node1):
+        cur = node1
+        while cur != self.parent[cur]:
+            cur = self.parent[cur]
+        return cur
 
-def findRoot(n1):
-    cur = n1
-    while cur != parent[cur]:
-        cur = parent[cur]
-    return cur
+    def union(self, node1, node2):
+        node1Rep = self.find(node1)
+        node2Rep = self.find(node2)
 
-
-def union(n1, n2):
-    root1, root2 = findRoot(n1), findRoot(n2)
-    if root1 == root2:
-        return 0
-
-    elif rank[root2] > rank[root1]:
-        parent[root1] = parent[root2]
-        rank[root2] += rank[root1]
-    else:
-        parent[root2] = parent[root1]
-        rank[root1] += rank[root2]
-    return 1
+        # This means node1 and node2 are already in the same component
+        if node1Rep == node2Rep:
+            return False
+        else:
+            if self.weight[node1Rep] > self.weight[node2Rep]:
+                # if node1 is bigger, merge node2 to node1
+                self.parent[node2Rep] = node1Rep
+                self.weight[node1Rep] += self.weight[node2Rep]
+            else:
+                self.parent[node1Rep] = node2Rep
+                self.weight[node2Rep] += self.weight[node1Rep]
+        return True
