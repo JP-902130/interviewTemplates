@@ -38,3 +38,12 @@ class Union:
             self.count += 1
             self.parent[node] = node
             self.weight[node] = 1
+    ## getKey and keyToSomethingas
+
+    def getKey(self, someVal):
+        # We want to map some inputs to a unique key to create nodes, the node has to be in the range of [0,n-1]
+        pass
+
+    def keyToSomething(self, node):
+        # Map the key to the real life values
+        pass
