@@ -1,29 +1,40 @@
 class Union:
     def __init__(self, n):
         self.parent = []
+        self.weight = []
+        self.count = 0
         for i in range(n):
-            self.parent.append(i)
-        self.weight = [1] * len(self.parent)
+            self.parent.append(-1)
+            self.weight.append(0)
 
     def find(self, node1):
-        cur = node1
-        while cur != self.parent[cur]:
-            cur = self.parent[cur]
-        return cur
+        if node1 == self.parent[node1]:
+            return node1
+        else:
+            return self.find(self.parent[node1])
 
     def union(self, node1, node2):
-        node1Rep = self.find(node1)
-        node2Rep = self.find(node2)
-
-        # This means node1 and node2 are already in the same component
-        if node1Rep == node2Rep:
+        rep1 = self.find(node1)
+        rep2 = self.find(node2)
+        if rep1 == rep2:
             return False
         else:
-            if self.weight[node1Rep] > self.weight[node2Rep]:
-                # if node1 is bigger, merge node2 to node1
-                self.parent[node2Rep] = node1Rep
-                self.weight[node1Rep] += self.weight[node2Rep]
+            if self.weight[rep1] > self.weight[rep2]:
+                self.parent[rep2] = rep1
+                self.weight[rep1] += self.weight[rep2]
             else:
-                self.parent[node1Rep] = node2Rep
-                self.weight[node2Rep] += self.weight[node1Rep]
-        return True
+                self.parent[rep2] = rep1
+                self.weight[rep1] += self.weight[rep2]
+            self.count -= 1
+            return True
+
+    def isDeveloped(self, node):
+        return self.parent[node] != -1
+
+    def develop(self, node):
+        if self.isDeveloped(node):
+            return
+        else:
+            self.count += 1
+            self.parent[node] = node
+            self.weight[node] = 1
