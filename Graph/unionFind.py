@@ -9,10 +9,11 @@ class Union:
             self.weight.append(1)
 
     def find(self, node):
-        if self.parent[node] == node:
-            return node
-        else:
-            return self.find(self.parent[node])
+        cur = node
+        while self.parent[cur] != cur:
+            self.parent[cur] = self.parent[self.parent[cur]]
+            cur = self.parent[cur]
+        return cur
 
     def union(self, node1, node2):
         rep1 = self.find(node1)
